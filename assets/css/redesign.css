@@ -1,0 +1,1311 @@
+/* ------------ WEBMAIL REDESIGN PLAYGROUND ------------ */
+
+.webmail-playground {
+  margin-top: 24px;
+  border-radius: 26px;
+  background: radial-gradient(circle at top left, #020617, #020617 60%);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.95);
+  padding: 22px 24px 28px;
+  position: relative;
+}
+
+/* Toolbar */
+
+.webmail-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.webmail-toolbar-left {
+  max-width: 420px;
+}
+
+.webmail-label {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #a5b4fc;
+}
+
+.webmail-hint {
+  margin: 0;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.webmail-stages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* Stage chips */
+
+.stage-chip {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    background 0.16s ease-out,
+    color 0.16s ease-out,
+    box-shadow 0.16s ease-out,
+    transform 0.12s ease-out,
+    border-color 0.16s ease-out;
+  white-space: nowrap;
+}
+
+.stage-chip:hover {
+  background: rgba(30, 64, 175, 0.9);
+  border-color: rgba(96, 165, 250, 0.9);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.9);
+  transform: translateY(-1px);
+}
+
+.stage-chip.is-active {
+  background: linear-gradient(135deg, #22c55e, #0ea5e9);
+  color: #020617;
+  border-color: transparent;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.95);
+}
+
+/* ------- WEBMAIL WINDOW (ugly mock base) ------- */
+
+.webmail-window {
+  margin-top: 6px;
+  border-radius: 22px;
+  background: #050816;
+  border: 1px solid rgba(51, 65, 85, 0.9);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+  overflow: hidden;
+
+  /* scund & înghesuit */
+  height: 440px;
+  display: flex;
+  flex-direction: column;
+}
+
+.webmail-window-chrome {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px;
+  border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+  background: linear-gradient(90deg, #111827, #020617);
+}
+
+.chrome-dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.chrome-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #4b5563;
+}
+
+.dot-close { background: #f97316; }
+.dot-min   { background: #eab308; }
+.dot-max   { background: #22c55e; }
+
+.webmail-window-title {
+  font-size: 10px;
+  color: #9ca3af;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Viewport ocupă restul spațiului */
+
+.webmail-viewport {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  padding: 3px;
+  overflow: auto;           /* apar scrollbars chiar dacă nu e nevoie */
+  background: #050816;
+}
+
+/* ========= STATIC SURGEWEB MOCK – INTENȚIONAT URÂT (STAGE 0) ========= */
+
+#webmailStatic {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #8ab4ff, #ffb4b4);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  /* font mic, monospace, greu de citit */
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #000;
+}
+
+/* layout interior înghesuit */
+
+.sw-top {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  height: 100%;
+}
+
+/* sidebar foarte colorat și aglomerat */
+
+.sw-left {
+  background: #1f2937;
+  color: #e5e7eb;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  position: relative;   /* ca să putem muta un buton aiurea */
+}
+
+.sw-logo {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fde047;
+  margin-bottom: 0;
+}
+
+.sw-acc {
+  font-weight: 600;
+  background: #b91c1c;
+  padding: 2px 3px;
+  border-radius: 2px;
+  font-size: 10px;
+}
+
+/* Compose – mic, pătrat, pare de debug */
+.sw-compose {
+  padding: 3px 2px;
+  background: #22c55e;
+  border: 2px dashed #000;
+  color: #000;
+  border-radius: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 9px;
+  width: 80%;
+  align-self: flex-end;      /* plasat aiurea în dreapta */
+}
+
+/* meniu cu bullets, text lipit */
+
+.sw-menu {
+  list-style: square;
+  padding-left: 12px;
+  margin: 2px 0;
+}
+
+.sw-menu li {
+  padding: 1px 0;
+}
+
+.sw-menu li.active {
+  background: #3b82f6;
+  color: #000;
+}
+
+.sw-menu li.child {
+  font-style: italic;
+  color: #93c5fd;
+}
+
+/* footer menu – dar ultimul buton e mutat sus, random */
+
+.sw-footer-menu {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sw-footer-menu button {
+  padding: 2px 0;
+  font-size: 9px;
+  background: #0ea5e9;
+  border: 1px solid #000;
+  border-radius: 0;
+  text-transform: uppercase;
+}
+
+/* „Theme” ajunge în colțul din dreapta sus al sidebar-ului, peste restul */
+.sw-footer-menu button:last-child {
+  position: absolute;
+  top: 2px;
+  right: -4px;
+  width: 70px;
+  font-size: 8px;
+  background: #facc15;
+  transform: rotate(2deg);
+}
+
+/* partea dreaptă – totul lipit, culori tari */
+
+.sw-right {
+  background: #fef9c3;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* header mailbox – butoane identice, greu de deosebit */
+
+.sw-mail-header {
+  background: #f97316;
+  border-bottom: 1px solid #7c2d12;
+  padding: 3px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.sw-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.sw-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+/* cursor text pe butoane (anti-UX) */
+.sw-actions button {
+  padding: 2px 3px;
+  background: #facc15;
+  border: 1px solid #000;
+  border-radius: 0;
+  font-size: 9px;
+  text-transform: uppercase;
+  cursor: text;
+}
+
+/* search bar – label sus, input jos, totul strâns */
+
+.sw-search-bar {
+  background: #22c55e;
+  padding: 2px 4px;
+  display: grid;
+  grid-template-columns: 1fr 90px 1.3fr;
+  align-items: start;
+  gap: 2px;
+  border-bottom: 1px solid #166534;
+}
+
+.sw-search-label {
+  font-weight: 700;
+  font-size: 9px;
+  line-height: 1.1;
+}
+
+.sw-search-bar input {
+  width: 100%;
+  padding: 1px;
+  border-radius: 0;
+  border: 1px solid #000;
+  font-size: 9px;
+}
+
+.sw-options {
+  font-size: 8px;
+  text-align: right;
+  text-decoration: underline;
+}
+
+/* listă + mail – spațiu minim */
+
+.sw-content {
+  display: grid;
+  grid-template-columns: 45% 1fr;
+  height: 100%;
+}
+
+/* listă de mailuri – rânduri înghesuite */
+
+.sw-list {
+  background: #e5e7eb;
+  border-right: 2px solid #000;
+  overflow-y: scroll;     /* forțăm scrollbar chiar dacă nu trebuie */
+}
+
+.sw-list .row {
+  display: grid;
+  grid-template-columns: 40% 1fr auto;
+  padding: 2px 3px;
+  border-bottom: 1px solid #9ca3af;
+  font-size: 9px;
+}
+
+.sw-list .row.unread {
+  background: #fed7aa;
+  font-weight: 700;
+}
+
+.sw-list .from,
+.sw-list .subject {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sw-list .meta {
+  text-align: right;
+  white-space: nowrap;
+  color: #111827;
+}
+
+/* mail view – margin minim, text „grey-ish” pe fundal gălbui */
+
+.sw-mail-view {
+  background: #fefce8;
+  padding: 4px;
+  overflow-y: scroll;
+  border-left: 2px solid #000;
+}
+
+.sw-mail-subject {
+  font-weight: 700;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  color: #7c2d12;
+  font-size: 10px;
+}
+
+.sw-mail-meta {
+  color: #4b5563;
+  font-size: 8px;
+  margin-bottom: 4px;
+}
+
+.sw-mail-body p {
+  margin-bottom: 3px;
+  font-size: 10px;
+}
+
+/* Responsive – doar să nu crape rău */
+
+@media (max-width: 960px) {
+  .sw-top {
+    grid-template-columns: 170px 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .sw-top {
+    grid-template-columns: 1fr;
+  }
+
+  .sw-content {
+    grid-template-columns: 1fr;
+  }
+
+  .sw-list {
+    max-height: 110px;
+  }
+}
+
+/* Toolbar responsive */
+
+@media (max-width: 900px) {
+  .webmail-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .webmail-stages {
+    justify-content: flex-start;
+  }
+}
+
+/* ========================================================= */
+/* =============== STAGE 1 – CURĂȚARE SIMPLĂ =============== */
+/* ========================================================= */
+
+.webmail-playground[data-stage="1"] #webmailStatic {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 13px;
+  background: #ffffff;      /* white on white */
+  color: #111827;
+}
+
+
+
+/* layout aproape la fel, doar un pic mai larg pe stânga */
+
+.webmail-playground[data-stage="1"] .sw-top {
+  grid-template-columns: 220px 1fr;
+}
+
+/* Sidebar curățat, gri deschis, spații un pic mai mici */
+
+.webmail-playground[data-stage="1"] .sw-left {
+  background: #f5f5f5;
+  color: #111827;
+  padding: 10px;
+  gap: 8px;
+  border-right: 1px solid #e5e7eb;
+}
+
+.webmail-playground[data-stage="1"] .sw-logo {
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  color: #111827;
+  margin-bottom: 2px;
+}
+
+.webmail-playground[data-stage="1"] .sw-acc {
+  background: #e5e7eb;
+  color: #111827;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Compose – dreptunghi simplu */
+
+.webmail-playground[data-stage="1"] .sw-compose {
+  width: 100%;
+  align-self: stretch;
+  margin-top: 6px;
+  padding: 7px 9px;
+  border-radius: 4px;
+  border: 1px solid #d4d4d4;
+  font-weight: 500;
+  text-transform: none;
+  font-size: 13px;
+  background: #ffffff;
+  color: #111827;
+  cursor: pointer;
+}
+
+.webmail-playground[data-stage="1"] .sw-compose:hover {
+  background: #f3f4f6;
+}
+
+/* Meniu – mai puțin spațiu între Drafts / Sent / Spam / Trash */
+
+/* Meniu – și mai puțin spațiu între Drafts / Sent / Spam / Trash */
+
+.webmail-playground[data-stage="1"] .sw-menu {
+  list-style: none;
+  padding-left: 0;
+  margin: 4px 0 0;   /* mai puțin spațiu față de Compose */
+}
+
+.webmail-playground[data-stage="1"] .sw-menu li {
+  padding: 2px 10px; /* mai puțin pe verticală decât 4px */
+  margin-bottom: 1px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.webmail-playground[data-stage="1"] .sw-menu li:hover {
+  background: #e5e7eb;
+}
+
+.webmail-playground[data-stage="1"] .sw-menu li.active {
+  background: #d4d4d4;
+  font-weight: 600;
+}
+
+.webmail-playground[data-stage="1"] .sw-menu li.child {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+/* Footer – butoanele stivuite vertical */
+
+/* Footer – butoane stivuite, mai subțiri */
+.webmail-playground[data-stage="1"] .sw-footer-menu {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;               /* mai puțin spațiu între ele */
+}
+
+.webmail-playground[data-stage="1"] .sw-footer-menu button {
+  width: 100%;
+  padding: 4px 4px;       /* mai subțire decât 6px */
+  font-size: 11px;        /* puțin mai mic */
+  background: #e5e7eb;
+  border-radius: 4px;
+  border: 1px solid #d4d4d4;
+  text-transform: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.webmail-playground[data-stage="1"] .sw-footer-menu button:hover {
+  background: #d4d4d4;
+}
+
+/* Theme nu mai este fluturat sus */
+
+.webmail-playground[data-stage="1"] .sw-footer-menu button:last-child {
+  position: static;
+  width: 100%;
+  font-size: 12px;
+  background: #e5e7eb;
+  transform: none;
+}
+
+/* Dreapta – totul alb / gri foarte deschis */
+
+.webmail-playground[data-stage="1"] .sw-right {
+  background: #ffffff;
+}
+
+/* Header mailbox – bară gri deschis, butoane simple */
+
+.webmail-playground[data-stage="1"] .sw-mail-header {
+  background: #f5f5f5;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  align-items: center;
+}
+
+.webmail-playground[data-stage="1"] .sw-title {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+/* Actions – dreptunghiuri gri */
+
+.webmail-playground[data-stage="1"] .sw-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.webmail-playground[data-stage="1"] .sw-actions button {
+  padding: 6px 12px;
+  background: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #d4d4d4;
+  font-size: 12px;
+  text-transform: none;
+  cursor: pointer;
+  color: #111827;
+}
+
+.webmail-playground[data-stage="1"] .sw-actions button:hover {
+  background: #f3f4f6;
+}
+
+/* Search bar – alb pe alb, flex */
+
+.webmail-playground[data-stage="1"] .sw-search-bar {
+  background: #ffffff;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.webmail-playground[data-stage="1"] .sw-search-label {
+  font-weight: 500;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.webmail-playground[data-stage="1"] .sw-search-bar input {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #d4d4d4;
+  font-size: 12px;
+  background: #ffffff;
+  color: #111827;
+}
+
+.webmail-playground[data-stage="1"] .sw-search-bar input::placeholder {
+  color: #9ca3af;
+}
+
+.webmail-playground[data-stage="1"] .sw-options {
+  font-size: 11px;
+  text-align: right;
+  color: #6b7280;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+/* Content – aproape ca înainte */
+
+.webmail-playground[data-stage="1"] .sw-content {
+  grid-template-columns: 40% 1fr;
+}
+
+/* Listă mailuri – alb, highlight discret */
+
+.webmail-playground[data-stage="1"] .sw-list {
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  overflow-y: auto;
+}
+
+.webmail-playground[data-stage="1"] .sw-list .row {
+  grid-template-columns: 42% 1fr auto;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  cursor: pointer;
+}
+
+.webmail-playground[data-stage="1"] .sw-list .row.unread {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+.webmail-playground[data-stage="1"] .sw-list .row:hover {
+  background: #e5e7eb;
+}
+
+/* Mail view – text negru pe alb */
+
+.webmail-playground[data-stage="1"] .sw-mail-view {
+  background: #ffffff;
+  padding: 12px 16px;
+  border-left: 1px solid #e5e7eb;
+  overflow-y: auto;
+}
+
+.webmail-playground[data-stage="1"] .sw-mail-subject {
+  font-size: 14px;
+  margin-bottom: 6px;
+  text-transform: none;
+  color: #111827;
+}
+
+.webmail-playground[data-stage="1"] .sw-mail-meta {
+  font-size: 11px;
+  margin-bottom: 10px;
+  color: #6b7280;
+}
+
+.webmail-playground[data-stage="1"] .sw-mail-body p {
+  font-size: 13px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+/* ========================================================= */
+/* =============== STAGE 2 – LAYOUT MODERN ================= */
+/* ========================================================= */
+/* Focus: layout & structure, still neutral light theme      */
+
+.webmail-playground[data-stage="2"] #webmailStatic {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 13px;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+/* Layout: sidebar a bit mai îngust, padding interior pe dreapta */
+.webmail-playground[data-stage="2"] .sw-top {
+  grid-template-columns: 230px 1fr;
+}
+
+/* ---------- SIDEBAR (modern, dar simplu) ---------- */
+
+.webmail-playground[data-stage="2"] .sw-left {
+  background: linear-gradient(180deg, #f9fafb, #eef2ff);
+  color: #111827;
+  padding: 12px 12px 10px;
+  gap: 8px;
+  border-right: 1px solid #e5e7eb;
+}
+
+.webmail-playground[data-stage="2"] .sw-logo {
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0;
+}
+
+.webmail-playground[data-stage="2"] .sw-acc {
+  background: #e5e7eb;
+  color: #111827;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+}
+
+/* Compose – buton primar, full-width */
+
+.webmail-playground[data-stage="2"] .sw-compose {
+  width: 100%;
+  align-self: stretch;
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid #4f46e5;
+  font-weight: 600;
+  text-transform: none;
+  font-size: 13px;
+  background: #4f46e5;
+  color: #f9fafb;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(79, 70, 229, 0.35);
+}
+
+.webmail-playground[data-stage="2"] .sw-compose:hover {
+  background: #4338ca;
+}
+
+/* Meniu – items mai compacte, accent pe active */
+
+.webmail-playground[data-stage="2"] .sw-menu {
+  list-style: none;
+  padding-left: 0;
+  margin: 10px 0 0;
+}
+
+.webmail-playground[data-stage="2"] .sw-menu li {
+  padding: 4px 10px;
+  margin-bottom: 2px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.webmail-playground[data-stage="2"] .sw-menu li:hover {
+  background: #e5e7eb;
+}
+
+.webmail-playground[data-stage="2"] .sw-menu li.active {
+  background: #e0e7ff;
+  font-weight: 600;
+  color: #1d4ed8;
+}
+
+.webmail-playground[data-stage="2"] .sw-menu li.child {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+/* Footer – butoane text-like, icon bar */
+
+.webmail-playground[data-stage="2"] .sw-footer-menu {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.webmail-playground[data-stage="2"] .sw-footer-menu button {
+  padding: 6px 6px;
+  font-size: 11px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  border: 1px solid #d4d4d4;
+  text-transform: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.webmail-playground[data-stage="2"] .sw-footer-menu button:hover {
+  background: #d4d4d4;
+}
+
+.webmail-playground[data-stage="2"] .sw-footer-menu button:last-child {
+  position: static;
+  width: 100%;
+  font-size: 11px;
+  transform: none;
+}
+
+/* ---------- PANOU DREAPTA – LAYOUT MODERN ---------- */
+
+.webmail-playground[data-stage="2"] .sw-right {
+  background: #e5e7eb;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header mailbox – titlu + acțiuni pe un singur rând */
+
+.webmail-playground[data-stage="2"] .sw-mail-header {
+  background: transparent;
+  border-bottom: none;
+  padding: 0 0 8px;
+  align-items: center;
+}
+
+.webmail-playground[data-stage="2"] .sw-title {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+/* Actions – buton primar + secundare */
+
+.webmail-playground[data-stage="2"] .sw-actions {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+
+.webmail-playground[data-stage="2"] .sw-actions button {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  text-transform: none;
+  cursor: pointer;
+  border: 1px solid #d4d4d4;
+  background: #ffffff;
+  color: #111827;
+}
+
+.webmail-playground[data-stage="2"] .sw-actions button:first-child {
+  background: #4f46e5;
+  border-color: #4f46e5;
+  color: #f9fafb;
+}
+
+.webmail-playground[data-stage="2"] .sw-actions button:hover {
+  background: #f3f4f6;
+}
+
+/* Search bar – card subțire, full width */
+
+.webmail-playground[data-stage="2"] .sw-search-bar {
+  background: #ffffff;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 10px;
+}
+
+.webmail-playground[data-stage="2"] .sw-search-label {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.webmail-playground[data-stage="2"] .sw-search-bar input {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: none;
+  font-size: 12px;
+  background: transparent;
+}
+
+.webmail-playground[data-stage="2"] .sw-search-bar input::placeholder {
+  color: #9ca3af;
+}
+
+.webmail-playground[data-stage="2"] .sw-options {
+  font-size: 11px;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+/* Content – două carduri, listă + mail view */
+
+.webmail-playground[data-stage="2"] .sw-content {
+  grid-template-columns: 38% 1fr;
+  gap: 10px;
+  height: 100%;
+}
+
+.webmail-playground[data-stage="2"] .sw-list {
+  background: #ffffff;
+  border-right: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+  overflow-y: auto;
+}
+
+.webmail-playground[data-stage="2"] .sw-list .row {
+  grid-template-columns: 45% 1fr auto;
+  padding: 7px 10px;
+  font-size: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  cursor: pointer;
+}
+
+.webmail-playground[data-stage="2"] .sw-list .row:last-child {
+  border-bottom: none;
+}
+
+.webmail-playground[data-stage="2"] .sw-list .row.unread {
+  background: #eef2ff;
+  font-weight: 600;
+}
+
+.webmail-playground[data-stage="2"] .sw-list .row:hover {
+  background: #e5e7eb;
+}
+
+/* Mail view card */
+
+.webmail-playground[data-stage="2"] .sw-mail-view {
+  background: #ffffff;
+  padding: 14px 18px;
+  border-left: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+  overflow-y: auto;
+}
+
+.webmail-playground[data-stage="2"] .sw-mail-subject {
+  font-size: 15px;
+  margin-bottom: 6px;
+  text-transform: none;
+  color: #111827;
+}
+
+.webmail-playground[data-stage="2"] .sw-mail-meta {
+  font-size: 11px;
+  margin-bottom: 10px;
+  color: #6b7280;
+}
+
+.webmail-playground[data-stage="2"] .sw-mail-body p {
+  font-size: 13px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+/* ========================================================= */
+/* =============== STAGE 3 – UI COMPLET ==================== */
+/* ========================================================= */
+/* Focus: polished UI, accent color, micro improvements      */
+
+.webmail-playground[data-stage="3"] #webmailStatic {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 13px;
+  background: linear-gradient(135deg, #eef2ff, #f9fafb);
+  color: #0f172a;
+}
+
+/* Layout: sidebar mai compact, content dominant */
+
+.webmail-playground[data-stage="3"] .sw-top {
+  grid-template-columns: 220px 1fr;
+}
+
+/* ---------- SIDEBAR – app-like ---------- */
+
+.webmail-playground[data-stage="3"] .sw-left {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+  border-right: 1px solid #e5e7eb;
+  padding: 12px 12px 10px;
+  gap: 6px;
+}
+
+.webmail-playground[data-stage="3"] .sw-logo {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #111827;
+}
+
+.webmail-playground[data-stage="3"] .sw-acc {
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+}
+
+/* Compose – buton flotant primar */
+
+.webmail-playground[data-stage="3"] .sw-compose {
+  width: 100%;
+  align-self: stretch;
+  margin-top: 8px;
+  padding: 9px 10px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  font-size: 13px;
+  background: linear-gradient(135deg, #22c55e, #0ea5e9);
+  color: #f9fafb;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(14, 116, 144, 0.35);
+}
+
+.webmail-playground[data-stage="3"] .sw-compose:hover {
+  filter: brightness(1.05);
+}
+
+/* Meniu – cu indicator de selecție */
+
+.webmail-playground[data-stage="3"] .sw-menu {
+  list-style: none;
+  padding-left: 0;
+  margin: 10px 0 0;
+}
+
+.webmail-playground[data-stage="3"] .sw-menu li {
+  position: relative;
+  padding: 4px 12px 4px 16px;
+  margin-bottom: 2px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.webmail-playground[data-stage="3"] .sw-menu li::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: transparent;
+  transform: translateY(-50%);
+}
+
+.webmail-playground[data-stage="3"] .sw-menu li:hover {
+  background: #e5e7eb;
+}
+
+.webmail-playground[data-stage="3"] .sw-menu li.active {
+  background: #e0f2fe;
+  color: #0369a1;
+  font-weight: 600;
+}
+
+.webmail-playground[data-stage="3"] .sw-menu li.active::before {
+  background: #0ea5e9;
+}
+
+.webmail-playground[data-stage="3"] .sw-menu li.child {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+/* Footer – icon-strip style */
+
+.webmail-playground[data-stage="3"] .sw-footer-menu {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.webmail-playground[data-stage="3"] .sw-footer-menu button {
+  padding: 6px 6px;
+  font-size: 11px;
+  background: #f3f4f6;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+  text-align: center;
+}
+
+.webmail-playground[data-stage="3"] .sw-footer-menu button:hover {
+  background: #e5e7eb;
+}
+
+.webmail-playground[data-stage="3"] .sw-footer-menu button:last-child {
+  position: static;
+  width: 100%;
+  font-size: 11px;
+  transform: none;
+}
+
+/* ---------- RIGHT PANEL – polished mail app ---------- */
+
+.webmail-playground[data-stage="3"] .sw-right {
+  background: transparent;
+  padding: 10px 10px 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mail header – bandă superioară subțire */
+
+.webmail-playground[data-stage="3"] .sw-mail-header {
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  padding: 8px 14px;
+  align-items: center;
+  box-shadow: 0 10px 16px rgba(15, 23, 42, 0.06);
+}
+
+.webmail-playground[data-stage="3"] .sw-title {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+/* Actions – Reply primar, restul outline */
+
+.webmail-playground[data-stage="3"] .sw-actions {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+
+.webmail-playground[data-stage="3"] .sw-actions button {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  text-transform: none;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #111827;
+}
+
+.webmail-playground[data-stage="3"] .sw-actions button:first-child {
+  background: #0ea5e9;
+  border-color: #0ea5e9;
+  color: #ecfeff;
+  box-shadow: 0 8px 18px rgba(14, 165, 233, 0.4);
+}
+
+.webmail-playground[data-stage="3"] .sw-actions button:hover {
+  background: #f3f4f6;
+}
+
+/* Search – bandă sub header, cu icon look */
+
+.webmail-playground[data-stage="3"] .sw-search-bar {
+  margin-top: 6px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.webmail-playground[data-stage="3"] .sw-search-label {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.webmail-playground[data-stage="3"] .sw-search-bar input {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: none;
+  font-size: 12px;
+  background: transparent;
+}
+
+.webmail-playground[data-stage="3"] .sw-search-bar input::placeholder {
+  color: #9ca3af;
+}
+
+.webmail-playground[data-stage="3"] .sw-options {
+  font-size: 11px;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+/* Content – card mare cu listă + view */
+
+.webmail-playground[data-stage="3"] .sw-content {
+  margin-top: 10px;
+  grid-template-columns: 36% 1fr;
+  gap: 12px;
+  height: 100%;
+}
+
+/* Listă */
+
+.webmail-playground[data-stage="3"] .sw-list {
+  background: rgba(255, 255, 255, 0.95);
+  border-right: none;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+  overflow-y: auto;
+}
+
+.webmail-playground[data-stage="3"] .sw-list .row {
+  grid-template-columns: 48% 1fr auto;
+  padding: 8px 12px;
+  font-size: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  cursor: pointer;
+}
+
+.webmail-playground[data-stage="3"] .sw-list .row:last-child {
+  border-bottom: none;
+}
+
+.webmail-playground[data-stage="3"] .sw-list .row.unread {
+  background: #ecfeff;
+  font-weight: 600;
+}
+
+.webmail-playground[data-stage="3"] .sw-list .row:hover {
+  background: #e0f2fe;
+}
+
+/* Mail view */
+
+.webmail-playground[data-stage="3"] .sw-mail-view {
+  background: rgba(255, 255, 255, 0.97);
+  padding: 16px 20px;
+  border-left: none;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+  overflow-y: auto;
+}
+
+.webmail-playground[data-stage="3"] .sw-mail-subject {
+  font-size: 16px;
+  margin-bottom: 8px;
+  text-transform: none;
+  color: #0f172a;
+}
+
+.webmail-playground[data-stage="3"] .sw-mail-meta {
+  font-size: 11px;
+  margin-bottom: 12px;
+  color: #6b7280;
+}
+
+.webmail-playground[data-stage="3"] .sw-mail-body p {
+  font-size: 13px;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}

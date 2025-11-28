@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Redesign Webmail – UI / UX Interactive Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tema vizuală din lab -->
+  <link rel="stylesheet" href="assets/css/lab.css">
+  <!-- Stiluri specifice pentru pagina de redesign -->
+  <link rel="stylesheet" href="assets/css/redesign.css">
+</head>
+<body>
+
+  <!-- SCROLL PROGRESS BAR (ca în lab) -->
+  <div id="scroll-progress"></div>
+
+  <!-- ANIMATED WAVES BACKGROUND (ca în lab) -->
+  <div id="waves"></div>
+  <div id="waves2"></div>
+
+  <!-- HEADER -->
+  <header class="lab-header">
+    <h1 class="lab-title">UI / UX Interactive Lab</h1>
+    <button id="back-btn" class="back-btn">← Înapoi la prezentare</button>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="section reveal">
+      <h2 class="section-title">Redesign Webmail UNITBV</h2>
+      <p class="section-desc">
+        De la o interfață de webmail foarte slabă UI / UX la o variantă modernă.
+        Acesta este stadiul 0 – versiune intenționat „urată”.
+      </p>
+
+      <!-- PLAYGROUND CARD -->
+      <div class="webmail-playground" id="webmailPlayground" data-stage="0">
+
+        <!-- TOOLBAR CU BUTOANELE DE STAGE -->
+        <div class="webmail-toolbar">
+          <div class="webmail-toolbar-left">
+            <p class="webmail-label">NIVEL DE REDESIGN AL INTERFEȚEI:</p>
+            <p class="webmail-hint">
+              0 = UI / UX foarte slab · 3 = UI / UX complet modernizat
+            </p>
+          </div>
+
+          <div class="webmail-stages">
+            <button class="stage-chip is-active" data-stage="0">0 · Copie inițială (urâtă)</button>
+            <button class="stage-chip" data-stage="1">1 · Curățare</button>
+            <button class="stage-chip" data-stage="2">2 · Layout modern</button>
+            <button class="stage-chip" data-stage="3">3 · UI complet</button>
+          </div>
+        </div>
+
+        <!-- FEREASTRA WEBMAIL (mock urât) -->
+        <div class="webmail-window">
+          <div class="webmail-window-chrome">
+            <div class="chrome-dots">
+              <span class="chrome-dot dot-close"></span>
+              <span class="chrome-dot dot-min"></span>
+              <span class="chrome-dot dot-max"></span>
+            </div>
+            <span class="webmail-window-title">UNITBV Webmail – versiune slabă UI / UX</span>
+          </div>
+
+          <div class="webmail-viewport" id="webmailViewport">
+
+            <!-- MOCK STATIC, INTENȚIONAT CRAMPED & UGLY -->
+            <div id="webmailStatic">
+              <div class="sw-top">
+                <!-- STÂNGA -->
+                <div class="sw-left">
+                  <div class="sw-logo">SurgeWeb</div>
+                  <div class="sw-acc">@student.unitbv.ro</div>
+
+                  <button class="sw-compose">Compose new</button>
+
+                  <ul class="sw-menu">
+                    <li class="active">Inbox (620)</li>
+                    <li>Drafts</li>
+                    <li>Sent</li>
+                    <li>Spam</li>
+                    <li>Trash</li>
+                    <li class="child">More Folders ▸</li>
+                    <li class="child">Labels ▸</li>
+                    <li class="child">Searches ▸</li>
+                  </ul>
+
+                  <div class="sw-footer-menu">
+                    <button>Mail</button>
+                    <button>Calendar</button>
+                    <button>Contacts</button>
+                    <button>Theme</button>
+                  </div>
+                </div>
+
+                <!-- DREAPTA -->
+                <div class="sw-right">
+                  <div class="sw-mail-header">
+                    <div class="sw-title">Mailbox (Inbox)</div>
+                    <div class="sw-actions">
+                      <button>Reply</button>
+                      <button>Forward</button>
+                      <button>Delete</button>
+                      <button>More</button>
+                    </div>
+                  </div>
+
+                  <div class="sw-search-bar">
+                    <label class="sw-search-label">Quick search:</label>
+                    <input placeholder="type here...">
+                    <span class="sw-options">Display all | Sort by reverse date</span>
+                  </div>
+
+                  <div class="sw-content">
+                    <!-- LISTĂ -->
+                    <div class="sw-list">
+                      <div class="row unread">
+                        <div class="from">Cristian Boldișor</div>
+                        <div class="subject">[Grupa 4lf621] Prezentare - E.ON Energy Challenge - Editia XII</div>
+                        <div class="meta">09:08 · 5 KB</div>
+                      </div>
+                      <div class="row">
+                        <div class="from">lorena.rotariu@student.unitbv.ro</div>
+                        <div class="subject">[Grupa 4lf621] Călătorește în Europa cu BEST</div>
+                        <div class="meta">02:45 · 3 KB</div>
+                      </div>
+                      <div class="row">
+                        <div class="from">Adrian Lacatus</div>
+                        <div class="subject">[STUDENT] Chamber Jazz @Universitatea Transilvania</div>
+                        <div class="meta">26 Nov · 9 KB</div>
+                      </div>
+                      <div class="row">
+                        <div class="from">Ana Maria cazan</div>
+                        <div class="subject">[STUDENT] Invitatie participare studiu</div>
+                        <div class="meta">26 Nov · 1 KB</div>
+                      </div>
+                      <div class="row">
+                        <div class="from">Do not reply</div>
+                        <div class="subject">[eLearning] You have assignments due in 7 days</div>
+                        <div class="meta">25 Nov · 7 KB</div>
+                      </div>
+                    </div>
+
+                    <!-- MAIL VIEW -->
+                    <div class="sw-mail-view">
+                      <div class="sw-mail-subject">
+                        [Grupa 4lf621] Prezentare - E.ON Energy Challenge - Editia XII
+                      </div>
+
+                      <div class="sw-mail-meta">
+                        Thu, 27/11/2025 09:08:14 – From: Cristian Boldișor &lt;cristian.boldisor@unitbv.ro&gt;
+                      </div>
+
+                      <div class="sw-mail-body">
+                        <p>Dragi studenți,</p>
+                        <p>V-am trimis acum câteva zile un mesaj din partea companiei E.ON...</p>
+                        <p>Dacă doriți să aflați mai multe informații despre companie și concursul lor...</p>
+                        <p>Cu stimă, Cristian Boldișor</p>
+                      </div>
+                    </div>
+                  </div><!-- /.sw-content -->
+                </div><!-- /.sw-right -->
+              </div><!-- /.sw-top -->
+            </div><!-- /#webmailStatic -->
+
+          </div><!-- /.webmail-viewport -->
+        </div><!-- /.webmail-window -->
+      </div><!-- /.webmail-playground -->
+    </section>
+  </main>
+
+  <!-- JS din lab pentru scroll bar + reveal + back-btn -->
+  <script src="assets/js/lab.js"></script>
+  <!-- JS specific pentru butoanele de redesign (stage chips) -->
+  <script src="assets/js/redesign.js"></script>
+</body>
+</html>

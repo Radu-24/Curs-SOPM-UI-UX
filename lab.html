@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Laborator Interactiv UI/UX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- IMPORTANT: folosește folderul existent -->
+  <link rel="stylesheet" href="assets/css/lab.css">
+</head>
+<body>
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="scroll-progress"></div>
+
+  <!-- ANIMATED WAVES BACKGROUND -->
+  <div id="waves"></div>
+  <div id="waves2"></div>
+
+  <!-- FIXED HEADER -->
+  <header class="lab-header">
+    <h1 class="lab-title reveal">UI / UX Interactive Lab</h1>
+    <button id="back-btn" class="back-btn">← Înapoi la prezentare</button>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- SECTION: INTRO -->
+    <section class="section reveal">
+      <h2 class="section-title">Experimente UI / UX</h2>
+      <p class="section-desc">
+        Aici este un laborator complet care demonstrează interacțiuni moderne,
+        micro-animații, pattern-uri de design, gesturi, efecte avansate și
+        principii de UX aplicate practic.
+      </p>
+    </section>
+
+    <!-- SECTION A: CARD GRID -->
+    <section class="section reveal">
+      <h2 class="section-title">1. Card Grid Animat</h2>
+      <p class="section-desc">
+        Carduri care se animă, se rotesc, se ridică, se transformă vizual.
+      </p>
+
+      <div class="card-grid">
+
+        <div class="ui-card float-card">
+          <h3>Float Card</h3>
+          <p>Card care se ridică la hover cu umbră animată.</p>
+        </div>
+
+        <div class="ui-card tilt-card">
+          <h3>Tilt Card</h3>
+          <p>Card 3D care urmărește poziția mouse-ului.</p>
+        </div>
+
+        <div class="ui-card rotate-card">
+          <h3>Rotate Card</h3>
+          <p>Card cu animație de rotire pe hover.</p>
+        </div>
+
+        <div class="ui-card glow-card">
+          <h3>Glow Card</h3>
+          <p>Card cu efect de „neon glow”.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION B: INTERACTIVE BUTTONS -->
+    <section class="section reveal">
+      <h2 class="section-title">2. Butoane Reactive</h2>
+
+      <div class="button-row">
+        <button class="btn ripple-btn">Ripple Button</button>
+        <button class="btn bounce-btn">Bounce Button</button>
+        <button class="btn neon-btn magnetic-btn">Magnetic Button</button>
+        <button class="btn progress-btn" id="progress-btn">
+          Start Loading
+          <span class="progress-fill"></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION C: EXPANDABLE ELEMENTS -->
+    <section class="section reveal">
+      <h2 class="section-title">3. Elemente Expandabile</h2>
+
+      <div class="accordion-item">
+        <button class="accordion-header">Ce este un „hover state”?</button>
+        <div class="accordion-body">
+          <p>
+            Starea în care un element își schimbă forma / culoarea când treci cu
+            mouse-ul peste el. Transmite că elementul este interactiv.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">Ce este „micro-interaction”?</button>
+        <div class="accordion-body">
+          <p>
+            Orice mică animație care răspunde acțiunilor utilizatorului: hover,
+            click, scroll. Ajută la orientare și face UI-ul „viu”.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">De ce folosim spațiere mare?</button>
+        <div class="accordion-body">
+          <p>
+            Spațiul alb reduce stresul vizual, separă elementele și crește
+            lizibilitatea.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SECTION D: LIVE INPUT INTERACTIONS -->
+    <section class="section reveal">
+      <h2 class="section-title">4. Formulare Interactive</h2>
+
+      <!-- INPUT CU GLOW + PREVIEW ANIMAT -->
+      <div class="form-demo">
+        <label>Nume complet</label>
+        <div class="input-shell">
+          <input type="text" id="name-input" placeholder="Tastează ceva...">
+          <span class="input-glow"></span>
+        </div>
+        <p class="live-preview" id="name-preview"></p>
+      </div>
+
+      <!-- TASTATURĂ DIGITALĂ LEGATĂ DE NUME -->
+      <div class="form-demo">
+        <label>Tastatură digitală</label>
+        <div class="keyboard-wrapper">
+          <div class="keyboard-row">
+            <button class="vk-key" data-key="q">Q</button>
+            <button class="vk-key" data-key="w">W</button>
+            <button class="vk-key" data-key="e">E</button>
+            <button class="vk-key" data-key="r">R</button>
+            <button class="vk-key" data-key="t">T</button>
+            <button class="vk-key" data-key="y">Y</button>
+            <button class="vk-key" data-key="u">U</button>
+            <button class="vk-key" data-key="i">I</button>
+            <button class="vk-key" data-key="o">O</button>
+            <button class="vk-key" data-key="p">P</button>
+          </div>
+          <div class="keyboard-row">
+            <button class="vk-key" data-key="a">A</button>
+            <button class="vk-key" data-key="s">S</button>
+            <button class="vk-key" data-key="d">D</button>
+            <button class="vk-key" data-key="f">F</button>
+            <button class="vk-key" data-key="g">G</button>
+            <button class="vk-key" data-key="h">H</button>
+            <button class="vk-key" data-key="j">J</button>
+            <button class="vk-key" data-key="k">K</button>
+            <button class="vk-key" data-key="l">L</button>
+          </div>
+          <div class="keyboard-row">
+            <button class="vk-key" data-key="z">Z</button>
+            <button class="vk-key" data-key="x">X</button>
+            <button class="vk-key" data-key="c">C</button>
+            <button class="vk-key" data-key="v">V</button>
+            <button class="vk-key" data-key="b">B</button>
+            <button class="vk-key" data-key="n">N</button>
+            <button class="vk-key" data-key="m">M</button>
+            <button class="vk-key wide" data-key="backspace">⌫</button>
+          </div>
+          <div class="keyboard-row">
+            <button class="vk-key extra-wide" data-key="space">Spațiu</button>
+          </div>
+        </div>
+        <p class="keyboard-hint">
+          Poți scrie fie de la tastatură, fie apăsând butoanele. Tastele se aprind când tastezi.
+        </p>
+      </div>
+
+      <!-- SLIDER ANIMAT -->
+      <div class="form-demo">
+        <label>Slider animat</label>
+        <input type="range" id="slider" min="0" max="100" value="50">
+        <p class="live-preview" id="slider-value"></p>
+      </div>
+
+    </section>
+
+    <!-- SECTION E: PARALLAX DEMO (o singură serie de linii) -->
+    <section class="section reveal">
+      <h2 class="section-title">5. Parallax Scroll</h2>
+
+      <div class="parallax-box">
+        <div class="parallax-viewport">
+          <!-- un singur layer cu linii -->
+          <div class="parallax-layer parallax-lines" data-speed="1"></div>
+        </div>
+
+        <div class="parallax-label">Scroll în această zonă</div>
+      </div>
+
+      <p class="section-desc">
+        Stratul cu linii se mișcă puternic în funcție de poziția secțiunii în fereastră.
+      </p>
+    </section>
+
+    <!-- SECTION F: RANDOMIZED PARTICLE ANIMATION -->
+    <section class="section reveal">
+      <h2 class="section-title">6. Particule Interactive</h2>
+
+      <canvas id="particle-canvas"></canvas>
+      <p class="section-desc">Mișcă mouse-ul prin canvas pentru a influența particulele.</p>
+    </section>
+
+    <!-- SECTION G: BIG MOUSE-TRAIL WINDOW -->
+    <section class="section reveal">
+      <h2 class="section-title">7. Mouse Trail Playground</h2>
+      <p class="section-desc">
+        Zonă dedicată unde cursorul lasă în urmă un pattern animat. Efectul
+        este limitat strict la fereastra de mai jos.
+      </p>
+
+      <div id="mouse-playground" class="mouse-playground">
+        <p class="mouse-hint">Plimbă mouse-ul aici pentru a desena cu lumină.</p>
+      </div>
+    </section>
+
+    <!-- SECTION H: DRAG & DROP CARD -->
+    <section class="section reveal">
+      <h2 class="section-title">8. Drag & Drop Demo</h2>
+      <p class="section-desc">
+        Exemplu de card „agățat” de cursor – alt tip de feedback UX.
+      </p>
+
+      <div class="drag-area">
+        <div id="drag-card" class="drag-card">
+          Ține apăsat și trage acest card
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- IMPORTANT: folosește folderul existent -->
+  <script src="assets/js/lab.js"></script>
+</body>
+</html>

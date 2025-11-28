@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prezentare UI / UX – UNITBV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="stare-0 bg-default">
+  <header class="site-header">
+    <div class="header-left">
+      <img src="assets/img/unitbv-logo.png" alt="Sigla UNITBV" class="unitbv-logo" />
+      <span class="site-label">Proiect UI / UX · UNITBV</span>
+    </div>
+    <div class="header-right">
+      <span class="authors-label">Realizat de</span>
+      <span class="authors-names">Radu Matei · Cornel Misica</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO FULLSCREEN -->
+    <section id="hero" class="hero">
+      <div class="hero-inner">
+        <p class="hero-eyebrow">Prezentare interactivă</p>
+        <h1 id="hero-title" class="hero-title">
+          UI<span class="hero-slash"> / </span>UX
+        </h1>
+        <p class="hero-subtitle">
+          De la o pagină HTML simplă la o interfață modernă, animată,
+          explicată pas cu pas direct în browser.
+        </p>
+
+        <div class="hero-controls">
+          <p class="hero-controls-label">Nivel de „stilizare” al paginii:</p>
+          <div class="hero-buttons">
+            <button class="stage-btn" data-stage="0">Starea 0 · Doar HTML</button>
+            <button class="stage-btn" data-stage="1">Starea 1 · CSS de bază</button>
+            <button class="stage-btn" data-stage="2">Starea 2 · UI / UX complet</button>
+          </div>
+          <p class="hero-hint">
+            După ce activezi Starea 2, mișcă mouse-ul peste titlu și derulează în jos
+            pentru efecte de fade, pop și micro-interacțiuni.
+          </p>
+
+          <!-- BUTON MENIU DEMO-URI -->
+          <div class="hero-lab-cta">
+            <button
+              type="button"
+              class="hero-lab-btn"
+              id="open-menu-btn"
+            >
+              Deschide meniul de demo-uri
+            </button>
+            <p class="hero-lab-hint">
+              Meniul afișează demo-ul interactiv și un exemplu
+              de redesign de la UI slab la UI / UX bine gândit.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <aside id="hero-panel" class="hero-panel">
+        <h2 class="panel-title">Ce vezi pe această pagină?</h2>
+        <p class="panel-text" id="panel-text">
+          În Starea 0 vezi doar structura HTML. În Starea 1 apar fonturile și layout-ul.
+          În Starea 2 activăm tema completă, animațiile și efectele UI / UX.
+        </p>
+        <ul class="panel-list" id="panel-list">
+          <li>Tot conținutul este în limba română.</li>
+          <li>Stilul paginii se schimbă doar prin butoane.</li>
+          <li>Restul prezentării este progresiv, la scroll.</li>
+        </ul>
+      </aside>
+
+      <div class="scroll-indicator">
+        <span>Derulează</span>
+        <div class="scroll-dot"></div>
+      </div>
+    </section>
+
+    <!-- SECTIUNE: CE ESTE UI -->
+    <section class="section info-section reveal" id="sec-ui">
+      <h2>Ce este UI (User Interface)?</h2>
+      <p>
+        UI reprezintă partea vizibilă a aplicației: layout, culori, fonturi,
+        butoane, iconițe. Modul în care „arată” totul pe ecran.
+      </p>
+      <ul>
+        <li>Aranjarea elementelor pe pagină (layout).</li>
+        <li>Tipografie: dimensiuni, greutăți și combinații de fonturi.</li>
+        <li>Paletă de culori și contrast între elemente.</li>
+        <li>Stilul butoanelor, cardurilor și al iconițelor.</li>
+      </ul>
+
+      <h3>Exemplu de cod pentru un buton principal:</h3>
+      <pre class="code">
+&lt;button class="buton-primar"&gt;Trimite formular&lt;/button&gt;
+
+.buton-primar {
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #22c55e, #0ea5e9);
+  color: #020617;
+  cursor: pointer;
+}
+      </pre>
+    </section>
+
+    <!-- SECTIUNE: CE ESTE UX -->
+    <section class="section info-section reveal" id="sec-ux">
+      <h2>Ce este UX (User Experience)?</h2>
+      <p>
+        UX descrie experiența completă a utilizatorului: cât de ușor găsește
+        informația, cât de clar este traseul, ce feedback primește după o acțiune.
+      </p>
+      <ul>
+        <li>Fluxuri logice: pași clari de la început la final.</li>
+        <li>Mesaje de eroare explicite și prietenoase.</li>
+        <li>Stări vizuale diferite pentru hover, click, încărcare, succes.</li>
+        <li>Accesibilitate: funcționează și cu tastatura, și pe telefon.</li>
+      </ul>
+
+      <h3>Mic flux UX pentru un formular:</h3>
+      <ol>
+        <li>Utilizatorul apasă pe „Trimite formular”.</li>
+        <li>Butonul intră în stare de „Se trimite...”.</li>
+        <li>La succes, apare mesaj verde „Formular trimis cu succes”.</li>
+        <li>La eroare, mesaj clar: ce câmp lipsește sau este greșit.</li>
+      </ol>
+    </section>
+
+    <!-- SECTIUNE: DEMO WEBMAIL – UI SIMPLU vs UI CU UX -->
+    <section class="section mail-demo-section reveal" id="sec-mail-demo">
+      <header class="section-header">
+        <h2>Demo pagină webmail · UI simplu vs UI cu accent pe UX</h2>
+        <p>
+          Fereastra de mai jos imită o pagină de webmail. Sus poți alege între o
+          interfață simplă, practică, și una cu accent mai mare pe UI / UX.
+          Mai târziu, putem copia aici HTML-ul webmail-ului real al universității
+          și îl putem „cosmetiza” direct în această zonă.
+        </p>
+      </header>
+
+      <div class="mail-controls">
+        <button class="mail-style-btn aktiv" data-mail-style="simplu">
+          UI simplu și practic
+        </button>
+        <button class="mail-style-btn" data-mail-style="ux">
+          UI cu accent pe UX (animații, culori, spacing)
+        </button>
+        <button class="mail-code-toggle" id="mail-code-toggle">
+          Afișează codul folosit
+        </button>
+      </div>
+
+      <div id="mail-demo" class="mail-demo mail-ui-simplu">
+        <div class="mail-header">
+          <span class="mail-logo">Mail DEMO</span>
+          <div class="mail-actions">
+            <button>Compune</button>
+            <button>Actualizează</button>
+            <button>Setări</button>
+          </div>
+        </div>
+        <div class="mail-body">
+          <aside class="mail-sidebar">
+            <ul>
+              <li>Inbox</li>
+              <li>Trimise</li>
+              <li>Ciorne</li>
+              <li>Spam</li>
+              <li>Coș de gunoi</li>
+            </ul>
+          </aside>
+          <section class="mail-list">
+            <header>Mesaje</header>
+            <ul>
+              <li><span>Profesor Baze de Date</span> – Programă examen</li>
+              <li><span>Secretariat</span> – Actualizare orar</li>
+              <li><span>Platformă e-learning</span> – Notă nouă</li>
+              <li><span>Newsletter UNITBV</span> – Evenimente săptămâna aceasta</li>
+            </ul>
+          </section>
+          <section class="mail-preview">
+            <h3>Programă examen – Baze de Date</h3>
+            <p>
+              Bună ziua, atașat aveți lista completă de capitole, împreună cu
+              exemple de subiecte pentru examenul scris și oral.
+            </p>
+            <p>Succes,</p>
+            <p>Profesor coordonator</p>
+          </section>
+        </div>
+      </div>
+
+      <div id="mail-code-panel" class="mail-code-panel hidden">
+        <h3>Fragment CSS pentru diferența de UI</h3>
+        <pre class="code code-vscode">
+/* stil simplu, practic */
+.mail-ui-simplu .mail-header button {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+/* stil cu accent pe UX: gradient, umbre, animatii */
+.mail-ui-ux .mail-header button {
+  background: linear-gradient(135deg, #22c55e, #0ea5e9);
+  color: #020617;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(34, 197, 94, 0.55);
+  transition: transform 0.14s ease-out;
+}
+
+.mail-ui-ux .mail-header button:hover {
+  transform: translateY(-1px);
+}
+        </pre>
+      </div>
+    </section>
+
+    <!-- SECTIUNE: BACKGROUND PLAYGROUND -->
+    <section class="section bg-playground-section reveal" id="sec-backgrounds">
+      <header class="section-header">
+        <h2>Playground de background-uri · aceeași pagină, atmosferă diferită</h2>
+        <p>
+          Tema implicită rămâne cea pe care o vezi acum. Butoanele de mai jos
+          schimbă doar fundalul și efectele globale, fără să atingă structura.
+        </p>
+      </header>
+
+      <div class="bg-controls">
+        <button class="bg-mode-btn aktiv" data-bg-mode="default">
+          Mod implicit
+        </button>
+        <button class="bg-mode-btn" data-bg-mode="glass">
+          Mod „glass / blur”
+        </button>
+        <button class="bg-mode-btn" data-bg-mode="gradient">
+          Gradient animat
+        </button>
+        <button class="bg-mode-btn" data-bg-mode="plain">
+          Fundal simplu
+        </button>
+      </div>
+
+      <div class="bg-explain-card">
+        <h3 id="bg-title">Mod implicit</h3>
+        <p id="bg-text">
+          Fundal întunecat, cu două radial-gradients discrete. Focusul rămâne
+          pe conținut, animația este foarte lentă ca să nu deranjeze.
+        </p>
+        <pre class="code code-vscode" id="bg-code">
+body.bg-default.stare-2 {
+  background:
+    radial-gradient(circle at top left, #1f2937 0, #020617 45%),
+    radial-gradient(circle at bottom right, #022c22 0, #020617 55%);
+  background-size: 200% 200%;
+  animation: bgMove 18s ease-in-out infinite alternate;
+}
+        </pre>
+      </div>
+    </section>
+
+    <!-- SECTIUNE: INTERACTIONS GALLERY -->
+    <section class="section interactions-section reveal" id="sec-interactions">
+      <header class="section-header">
+        <h2>Galerie de micro-interacțiuni</h2>
+        <p>
+          Bătăile inimii unui UI modern: comutatoare, hover-uri, butoane cu ripple,
+          validare în timp real, toast-uri și carduri care se transformă.
+        </p>
+      </header>
+
+      <div class="interaction-grid">
+        <!-- CARD 1: TOGGLE ON/OFF iOS STYLE -->
+        <article class="interaction-card">
+          <h3>Comutator ON / OFF cu animație „bouncy”</h3>
+          <p>
+            Un slider de tip switch, ca în iOS: bila reacționează la margini și
+            are o mică animație de bounce când se schimbă starea.
+          </p>
+          <label class="toggle">
+            <input type="checkbox" id="demo-toggle" />
+            <span class="toggle-track">
+              <span class="toggle-thumb"></span>
+            </span>
+            <span class="toggle-label">„Mod întunecat” (exemplu)</span>
+          </label>
+          <div class="toggle-status" id="toggle-status">
+            Stare curentă: <strong>OFF</strong>
+          </div>
+          <p class="interaction-note">
+            UX: feedback vizual clar (culoare + poziție) și mișcare fluidă,
+            fără a distrage atenția.
+          </p>
+        </article>
+
+        <!-- CARD 2: HOVER CARD -->
+        <article class="interaction-card hover-tilt-card">
+          <h3>Card cu efect de tilt la hover</h3>
+          <p>
+            Un card care reacționează la poziția mouse-ului: un pic de 3D, fără
+            să devină obositor.
+          </p>
+          <div class="tilt-demo">
+            Mută mouse-ul peste card și observă lumina și umbra.
+          </div>
+          <p class="interaction-note">
+            Interacțiunea trebuie să fie subtilă, nu un parc de distracții.
+          </p>
+        </article>
+
+        <!-- CARD 3: MICRO-BUTTONS -->
+        <article class="interaction-card">
+          <h3>Buton cu micro-interacțiuni și ripple</h3>
+          <p>
+            Un buton principal care schimbă stare la hover și click, plus un mic
+            efect de ripple în punctul unde ai dat click.
+          </p>
+          <button class="micro-btn" id="micro-btn">
+            Trimite feedback
+            <span class="micro-ripple" aria-hidden="true"></span>
+          </button>
+          <p class="interaction-note">
+            Utilizatorul vede imediat că s-a întâmplat ceva după click.
+          </p>
+        </article>
+
+        <!-- CARD 4: VALIDARE LIVE PAROLĂ -->
+        <article class="interaction-card form-validation-card">
+          <h3>Câmp de parolă cu feedback în timp real</h3>
+          <p>
+            Exemplu de validare instant: utilizatorul vede ce reguli sunt
+            îndeplinite fără să apese pe „Trimite”.
+          </p>
+          <label class="inline-label">
+            <span>Parolă demonstrație</span>
+            <input
+              type="password"
+              id="demo-password"
+              placeholder="Introdu o parolă..."
+              autocomplete="off"
+            />
+          </label>
+          <ul class="password-hints" id="password-hints">
+            <li data-rule="length">Minim 8 caractere</li>
+            <li data-rule="uppercase">Cel puțin o literă mare</li>
+            <li data-rule="digit">Cel puțin o cifră</li>
+          </ul>
+          <p class="interaction-note">
+            UX: validarea devine o colaborare, nu o „pedeapsă” la final.
+          </p>
+        </article>
+
+        <!-- CARD 5: CARD „PILULĂ” PENTRU MESAJE UX -->
+        <article class="interaction-card expandable-pill-card" id="expandable-pill">
+          <h3>Card „pilulă” cu mesaje UX</h3>
+          <p>
+            Un card compact care ascunde exemple de mesaje de eroare și confirmare,
+            ca să nu încărcăm vizual pagina cu prea mult text.
+          </p>
+          <button class="pill-header" id="pill-toggle">
+            Afișează exemple de mesaje bune
+          </button>
+          <div class="pill-body">
+            <p>
+              Un mesaj bun de eroare spune clar ce s-a întâmplat, unde este problema
+              și ce poate face utilizatorul mai departe.
+            </p>
+            <p>
+              Exemplu: „Parola este prea scurtă. Adaugă încă minimum 2 caractere și
+              cel puțin o literă mare.” – concret, politicos și orientat spre soluție.
+            </p>
+            <p>
+              La confirmare, un mesaj scurt de tipul „Setările au fost salvate” este
+              suficient, eventual însoțit de un mic toast neintruziv.
+            </p>
+          </div>
+        </article>
+
+        <!-- CARD 6: TOAST NOTIFICATION -->
+        <article class="interaction-card toast-card">
+          <h3>Toast de confirmare în colțul ecranului</h3>
+          <p>
+            Mesaj scurt, care apare pentru câteva secunde după o acțiune
+            importantă, fără să blocheze interfața.
+          </p>
+          <button class="micro-btn secondary" id="toast-btn">
+            Simulează salvarea setărilor
+          </button>
+          <p class="interaction-note">
+            UX: utilizatorul primește confirmare clară, dar rămâne în contextul
+            în care lucra.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- TOAST REAL, FIXED -->
+    <div class="ui-toast" id="ui-toast" aria-live="polite">
+      <span>Setările au fost salvate. Acesta este un exemplu de toast.</span>
+    </div>
+
+    <!-- SECTIUNE: LOADING & PAGE LOAD -->
+    <section class="section loading-section reveal" id="sec-loading">
+      <header class="section-header">
+        <h2>Ecrane de încărcare și cum se încarcă de fapt un site</h2>
+        <p>
+          Loading-ul nu înseamnă doar un spinner la întâmplare. Diferite tipuri
+          de încărcare transmit lucruri diferite despre aplicație și despre
+          cât de „în control” este utilizatorul.
+        </p>
+      </header>
+
+      <div class="loading-layout">
+        <div class="loading-demos">
+          <article class="loading-card">
+            <h3>1. Spinner clasic</h3>
+            <div class="loader-spinner"></div>
+            <p>
+              Bun pentru acțiuni foarte scurte (sub 2 secunde), când nu știm
+              exact cât durează. Transmite doar „se întâmplă ceva”.
+            </p>
+          </article>
+
+          <article class="loading-card">
+            <h3>2. Bară de progres</h3>
+            <div class="loader-bar">
+              <div class="loader-bar-inner"></div>
+            </div>
+            <p>
+              Bun pentru upload / download, instalări sau orice task lung.
+              Oferă utilizatorului un sentiment de control și predictibilitate.
+            </p>
+          </article>
+
+          <article class="loading-card">
+            <h3>3. „Skeleton screen”</h3>
+            <div class="loader-skeleton">
+              <div class="skeleton-avatar"></div>
+              <div class="skeleton-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            <p>
+              În loc să afișăm un spinner, arătăm silueta conținutului final.
+              Utilizatorul înțelege imediat „ce urmează să apară”.
+            </p>
+          </article>
+        </div>
+
+        <div class="loading-explain">
+          <h3>Când alegem fiecare tip de loading?</h3>
+          <ul class="loading-usage">
+            <li><strong>Spinner:</strong> acțiuni scurte, unde un progres fals ar fi mai confuz.</li>
+            <li><strong>Bară de progres:</strong> procese predictibile, unde putem estima procentul.</li>
+            <li><strong>Skeleton:</strong> feed-uri, liste și dashboard-uri încărcate din rețea.</li>
+          </ul>
+
+          <h3>Cum se încarcă, simplificat, o pagină web?</h3>
+          <ol class="page-load-steps">
+            <li data-page-step="request" class="active">1. Browserul trimite request către server.</li>
+            <li data-page-step="html">2. Browserul descarcă și parsează HTML-ul.</li>
+            <li data-page-step="css">3. Se încarcă și se aplică fișierele CSS.</li>
+            <li data-page-step="js">4. Se descarcă și rulează JavaScript-ul.</li>
+            <li data-page-step="render">5. Browserul construiește layout-ul și desenează (paint).</li>
+            <li data-page-step="interactive">6. Pagina devine interactivă: click, hover, scroll.</li>
+          </ol>
+          <div class="page-load-detail" id="page-load-detail">
+            Browserul trimite cererea (request) către server, pe baza adresei URL.
+            Serverul răspunde cu HTML-ul inițial al paginii.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTIUNE: CODE TILES (EXPANDABILE, TIP VS CODE) -->
+    <section class="section code-tiles-section reveal" id="sec-code-tiles">
+      <header class="section-header">
+        <h2>Codul din spatele interfeței · panouri care se deschid</h2>
+        <p>
+          Fiecare card de mai jos se deschide ca un mini-editor. Ideea este să
+          vezi rapid bucăți de cod fără să părăsești prezentarea.
+        </p>
+      </header>
+
+      <div class="code-tile-grid">
+        <!-- TILE 1: HTML STRUCTURE -->
+        <article class="code-tile">
+          <header class="code-tile-header">
+            <div class="code-tile-meta">
+              <span class="code-tile-file">index.html</span>
+              <span class="code-tile-label">Structura hero-ului</span>
+            </div>
+            <button class="code-tile-toggle">
+              Vezi codul
+            </button>
+          </header>
+          <div class="code-tile-body">
+            <pre class="code code-vscode">
+&lt;section id="hero" class="hero"&gt;
+  &lt;div class="hero-inner"&gt;
+    &lt;h1 class="hero-title"&gt;UI / UX&lt;/h1&gt;
+    &lt;p class="hero-subtitle"&gt;
+      De la HTML simplu la interfață animată.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+            </pre>
+          </div>
+        </article>
+
+        <!-- TILE 2: CSS MICRO-INTERACTION -->
+        <article class="code-tile">
+          <header class="code-tile-header">
+            <div class="code-tile-meta">
+              <span class="code-tile-file">style.css</span>
+              <span class="code-tile-label">Buton cu micro-interacțiune</span>
+            </div>
+            <button class="code-tile-toggle">
+              Vezi codul
+            </button>
+          </header>
+          <div class="code-tile-body">
+            <pre class="code code-vscode">
+.micro-btn {
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #22c55e, #0ea5e9);
+  color: #020617;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 14px 26px rgba(34, 197, 94, 0.55);
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+.micro-btn:active {
+  transform: translateY(1px) scale(0.99);
+  box-shadow: 0 10px 18px rgba(34, 197, 94, 0.5);
+}
+            </pre>
+          </div>
+        </article>
+
+        <!-- TILE 3: JS SCROLL REVEAL -->
+        <article class="code-tile">
+          <header class="code-tile-header">
+            <div class="code-tile-meta">
+              <span class="code-tile-file">main.js</span>
+              <span class="code-tile-label">Scroll reveal logic</span>
+            </div>
+            <button class="code-tile-toggle">
+              Vezi codul
+            </button>
+          </header>
+          <div class="code-tile-body">
+            <pre class="code code-vscode">
+const items = document.querySelectorAll(".reveal");
+const obs = new IntersectionObserver((entries) =&gt; {
+  entries.forEach((entry) =&gt; {
+    if (entry.isIntersecting &amp;&amp; body.classList.contains("stare-2")) {
+      entry.target.classList.add("vizibil");
+      obs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+items.forEach((el) =&gt; obs.observe(el));
+            </pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTIUNE: UX PATTERNS – ACCORDION EXPANDABIL -->
+    <section class="section ux-patterns-section reveal" id="sec-ux-patterns">
+      <header class="section-header">
+        <h2>UX în practică · pattern-uri explicate</h2>
+        <p>
+          Câteva exemple clasice de decizii UX: spațiere, stări de eroare și
+          ordonarea acțiunilor. Fiecare rând se deschide pentru explicații.
+        </p>
+      </header>
+
+      <div class="ux-accordion">
+        <article class="ux-accordion-item">
+          <button class="ux-accordion-header">
+            <span>De ce folosim „white space” (spațiu gol)?</span>
+            <span class="ux-accordion-icon">+</span>
+          </button>
+          <div class="ux-accordion-body">
+            <p>
+              Spațiul gol nu este „spațiu irosit”, ci un instrument de organizare.
+              Ajută creierul să grupeze informația, crește lizibilitatea textului și
+              ghidează privirea către elementele importante (call to action, titluri).
+              Un ecran fără white space pare obositor, chiar dacă are același conținut.
+            </p>
+          </div>
+        </article>
+
+        <article class="ux-accordion-item">
+          <button class="ux-accordion-header">
+            <span>Ordinea butoanelor: „Anulează” vs „Salvează”</span>
+            <span class="ux-accordion-icon">+</span>
+          </button>
+          <div class="ux-accordion-body">
+            <p>
+              În mod obișnuit, acțiunea principală („Salvează”) este plasată
+              în dreapta, colorată, iar acțiunea secundară („Anulează”) este
+              mai discretă. Astfel reducem riscul de a apăsa din greșeală
+              butonul greșit și facem traseul implicit mai sigur.
+            </p>
+          </div>
+        </article>
+
+        <article class="ux-accordion-item">
+          <button class="ux-accordion-header">
+            <span>Mesaje de eroare care ajută, nu enervează</span>
+            <span class="ux-accordion-icon">+</span>
+          </button>
+          <div class="ux-accordion-body">
+            <p>
+              Mesajele gen „Eroare 400” sunt utile doar pentru dezvoltatori.
+              Din perspectivă UX, un mesaj bun spune trei lucruri: ce s-a întâmplat,
+              unde s-a întâmplat și ce poate face utilizatorul mai departe.
+              Exemplu: „Parola este prea scurtă. Trebuie să aibă minim 8 caractere
+              și o literă mare.” Limbaj clar, specific și orientat spre soluție.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Prezentare demonstrativă UI / UX · Pagina rulează local (localhost) și
+      este gândită pentru a fi arătată la curs / seminar.
+    </p>
+  </footer>
+
+  <!-- MENIU OVERLAY DEMO-URI -->
+  <div class="menu-overlay" id="menu-overlay" aria-hidden="true">
+    <div
+      class="menu-panel"
+      id="menu-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="menu-panel-title"
+    >
+      <header class="menu-panel-header">
+        <button
+          type="button"
+          class="menu-close-btn menu-close-left"
+          id="menu-close-left"
+          aria-label="Închide meniul"
+        >
+          ←
+        </button>
+        <span class="menu-panel-title" id="menu-panel-title">
+          Alege demo-ul
+        </span>
+        <button
+          type="button"
+          class="menu-close-btn menu-close-right"
+          id="menu-close-right"
+          aria-label="Închide meniul"
+        >
+          ✕
+        </button>
+      </header>
+      <div class="menu-panel-body">
+        <p class="menu-panel-text">
+          Poți sări direct în demo-uri mai complexe fără să părăsești prezentarea principală.
+        </p>
+        <div class="menu-panel-actions">
+          <button
+            type="button"
+            class="menu-link-btn"
+            data-target="lab"
+          >
+            Demo interactiv (UI / UX & animații)
+          </button>
+          <button
+            type="button"
+            class="menu-link-btn"
+            data-target="redesign"
+          >
+            Redesign UI slab → UI / UX bun (pas cu pas)
+          </button>
+        </div>
+        <p class="menu-panel-note">
+          Demo-urile se deschid în pagini separate: una pentru exemple variate de UI / UX,
+          alta pentru transformarea unei interfețe „urâte” într-una utilizabilă.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
